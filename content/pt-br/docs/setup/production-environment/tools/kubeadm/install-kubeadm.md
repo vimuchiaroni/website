@@ -139,13 +139,13 @@ Para mais detalhes sobre compatibilidade entre as versões, veja:
 2. Faça o download da chave de assinatura pública da Google Cloud:
 
    ```shell
-   sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+   sudo curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
    ```
 
-3. Adicione o repositório `apt` do Kubernetes:
+3. Adicione o repositório `apt` do Kubernetes com a versão desejada:
 
    ```shell
-   echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
    ```
 
 4. Atualize o índice de pacotes `apt`, instale o kubelet, o kubeadm e o kubectl, e fixe suas versões:
